@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <!--<PropertyGroup>
+    <ProjectsRoot>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), '.git/HEAD'))/Example</ProjectsRoot>
+    <DependencyPropsRoot>$(ProjectsRoot)/Example/Props</DependencyPropsRoot>
+  </PropertyGroup>-->
+</Project>
+  

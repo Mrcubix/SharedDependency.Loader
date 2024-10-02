@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    
+    <!--<DependencyPropsRoot>$(MSBuildProjectDirectory)/../Props</DependencyPropsRoot>
+    <ProjectsRoot>$(MSBuildProjectDirectory)/../</ProjectsRoot>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../MyPlugin.Lib/MyPlugin.Lib.csproj" Private="False" />
+    <ProjectReference Include="../../SharedDependency.Loader/SharedDependency.Loader.csproj">
+      <!--<AdditionalProperties>
+        DependencyPropsRoot=$(DependencyPropsRoot);
+        ProjectsRoot=$(ProjectsRoot)
+      </AdditionalProperties>-->
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenTabletDriver.Plugin" Version="0.6.4.0" Publish="false" />
+  </ItemGroup>
+
+</Project>

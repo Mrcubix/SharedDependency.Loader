@@ -1,0 +1,11 @@
+<Project>
+  
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
+    <ProjectReference Include="$(ProjectsRoot)/MyPlugin.Lib/MyPlugin.Lib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Label="Files" Condition=" '$(TargetFramework)' == 'net6.0' ">
+    <Dependency Include="MyPlugin.Lib" />
+  </ItemGroup>
+
+</Project>

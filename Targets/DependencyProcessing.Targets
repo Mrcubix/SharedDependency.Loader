@@ -1,0 +1,25 @@
+<Project>
+
+  <!-- Place the files accordingly in the libs folder to be embedded -->
+  <Target Name="ProcessDependencies" BeforeTargets="PrepareResources" Outputs="%(Dependency.Identity)">
+    <PropertyGroup>
+      <OutputPdbPath>$(OutputPath)/%(Dependency.Identity).pdb</OutputPdbPath>
+      <OutputDllPath>$(OutputPath)/%(Dependency.Identity).dll</OutputDllPath>
+      <LibsDllPath>$(MSBuildProjectDirectory)/libs/%(Dependency.Identity).dll</LibsDllPath>
+      <DependencyIdentity>%(Dependency.Identity)</DependencyIdentity>
+    </PropertyGroup>
+
+    <Delete Files="$(OutputPdbPath)" Condition="Exists('$(OutputPdbPath)')" />
+    <Move SourceFiles="$(OutputDllPath)" DestinationFiles="$(LibsDllPath)" Condition="Exists('$(OutputDllPath)')" />
+    <Message Importance="High" Text="$(DependencyIdentity) -> $(LibsDllPath)" Condition=" '$(DependencyIdentity)' != '' "/>
+  </Target>
+
+  <Target Name="BeforeProcessDependencies" BeforeTargets="ProcessDependencies">
+    <Message Importance="High" Text="Moving shared dependencies..." Condition=" '%(Dependency.Identity)' != '' " />
+  </Target>
+
+  <Target Name="AfterProcessDependencies" AfterTargets="ProcessDependencies">
+    <Message Importance="High" Text="Done moving shared dependencies." Condition=" '%(Dependency.Identity)' != '' " />
+  </Target>
+
+</Project>

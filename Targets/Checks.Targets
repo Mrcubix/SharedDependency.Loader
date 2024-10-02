@@ -1,0 +1,14 @@
+<Project>
+  
+  <Target Name="CheckTargetRoot" BeforeTargets="BeforeBuild">
+    <Warning Code="SHRD001" Text="DependencyPropsRoot is not defined. Please set it using the appropriate means." 
+             Condition=" '$(DependencyPropsRoot)' == '' "/>
+             
+    <Warning Code="SHRD002" Text="The directory specified in DependencyPropsRoot does not exist. No files will be embedded."
+             Condition="'$(DependencyPropsRoot)' != '' And !Exists('$(DependencyPropsRoot)')" />
+
+    <Warning Code="SHRD003" Text="ProjectsRoot is not defined. Please set it using the appropriate means."
+             Condition=" '$(ProjectsRoot)' == '' "/>
+  </Target>
+
+</Project>

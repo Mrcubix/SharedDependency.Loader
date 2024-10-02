@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net5.0;net6.0;net7.0;net8.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <IsDependencyLoader>true</IsDependencyLoader>
+    <ProjectsRoot>$(ProjectsRoot)</ProjectsRoot>
+    <DependencyPropsRoot>$(DependencyPropsRoot)</DependencyPropsRoot>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(ProjectsRoot)' == '' ">
+    <ProjectsRoot>$(MSBuildProjectDirectory)/../Example</ProjectsRoot>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="libs/*.dll" />
+  </ItemGroup>
+
+  <!--<Import Project="../Targets/SharedDependency.net*.targets" />-->
+
+  <!-- Would be complicated to support multiple config for multiple app of the same framework -->
+  <Import Project="$(DependencyPropsRoot)/SharedDependency.net*.props" Condition="Exists('$(DependencyPropsRoot)')" />
+  
+  <Import Project="../Targets/Checks.Targets" />
+  <Import Project="../Targets/DependencyProcessing.Targets" Condition="Exists('$(DependencyPropsRoot)')" />
+  
+</Project>
