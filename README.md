@@ -73,7 +73,7 @@ dotnet publish SharedDependency.Loader -c Release -f net6.0 /p:DependencyPropsRo
 
 or from the root of your repo in powershell :
 
-```
+```ps1
 $Root = "$((Get-Item .).FullName)/Example"
 dotnet publish SharedDependency.Loader -c Release -f net6.0 -p:DependencyPropsRoot="$Root/Props/" /p:ProjectsRoot=$Root
 ```
