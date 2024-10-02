@@ -13,8 +13,8 @@ Do not include the shared library in your plugin archive, otherwise your plugin 
 ```xml
 <PropertyGroup>
   <!-- Obtain the root of your repo using the way of your choice -->
-  <ProjectsRoot>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), '.git/HEAD'))</ProjectsRoot>
-  <DependencyPropsRoot>$(ProjectsRoot)/Example/Props</DependencyPropsRoot>
+  <ProjectsRoot>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), '.git/HEAD'))/Example</ProjectsRoot>
+  <DependencyPropsRoot>$(ProjectsRoot)/Props</DependencyPropsRoot>
 </PropertyGroup>
 ```
 
@@ -23,7 +23,7 @@ or define the properties in your projet's reference to the loader
 ```xml
 <ProjectReference Include="../../SharedDependency.Loader/SharedDependency.Loader.csproj">
   <AdditionalProperties>
-    DependencyPropsRoot=$(ProjectsRoot)/Example/Props
+    DependencyPropsRoot=$(DependencyPropsRoot)
     ProjectsRoot=$(ProjectsRoot)
   </AdditionalProperties>
 </ProjectReference>
