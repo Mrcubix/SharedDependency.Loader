@@ -126,3 +126,32 @@ public DependantPlugin()
     DependencyLoaded = SharedDependencyType != null;
 }
 ```
+
+## Troubleshooting
+
+Make sure the loader Object (`MyTool` in the example) does not make static use of the library or inherit any of its types directly.
+If you do, then whichever app loads the plugin will fail due to being unable to find the type in question when its types might be fetched.
+
+Do not do this : 
+
+```cs
+// This will cause an exception BEFORE the static constructor or the module initializer is called.
+public class MyTool : MyLibInterface
+{
+    // This will cause an exception when the static constructor or the module initializer is called.
+    public static MyLibInterface MyLibInterfaceInstance;
+
+    public static MyObjectInheritingMyLibInterface MyObjectInstance;
+}
+```
+
+Do this :
+
+```cs
+public class MyTool
+{
+    public MyLibInterface MyLibInterfaceInstance;
+
+    public MyObjectInheritingMyLibInterface MyObjectInstance;
+}
+```
