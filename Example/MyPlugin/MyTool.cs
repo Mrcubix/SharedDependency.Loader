@@ -16,7 +16,7 @@ public class MyTool : ITool
     [ModuleInitializer]
     public static void InitializeModule()
     {
-        var dependencyLoader = new SharedDependencyLoader("SharedDependency.Lib");
+        var dependencyLoader = new SharedDependencyLoader("MyPlugin.Lib");
 
         // Attempt at loading the dependencies if not already loaded
         if (DependenciesLoaded == false)

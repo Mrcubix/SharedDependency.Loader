@@ -29,12 +29,12 @@ or define the properties in your projet's reference to the loader
   
   <ItemGroup Label="References" Condition=" '$(TargetFramework)' == 'net6.0' ">
     <ProjectReference Include="$(ProjectsRoot)/MyPlugin.Lib/MyPlugin.Lib.csproj" />
-    <ProjectReference Include="$(ProjectsRoot)/MyPlugin.Lib/MyPlugin.Lib.csproj" />
+    <ProjectReference Include="$(ProjectsRoot)/MyOtherPlugin.Lib/MyOtherPlugin.Lib.csproj" />
   </ItemGroup>
 
   <ItemGroup Label="Files" Condition=" '$(TargetFramework)' == 'net6.0' ">
-    <Dependency Include="SharedDependency.Lib" />
-    <Dependency Include="SharedDependency.OtherLib" />
+    <Dependency Include="MyPlugin.Lib" />
+    <Dependency Include="MyOtherPlugin.Lib" />
   </ItemGroup>
 
 </Project>
@@ -113,7 +113,7 @@ You may then use the `SharedDependencyLoader` like so :
 ```cs
 static MyClass()
 {
-    var dependencyLoader = new SharedDependencyLoader("SharedDependency.Lib");
+    var dependencyLoader = new SharedDependencyLoader("MyPlugin.Lib");
 
     // Attempt at loading the dependencies if not already loaded
     if (DependenciesLoaded == false)
@@ -135,7 +135,7 @@ private static readonly string?[] assemblies = defaultContext.Assemblies.Select(
 
 public DependantPlugin()
 {
-    assemblies.Any(assembly => assembly == "SharedDependency.Lib")
+    assemblies.Any(assembly => assembly == "MyPlugin.Lib")
 }
 ```
 

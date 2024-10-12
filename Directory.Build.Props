@@ -5,7 +5,7 @@
 
   <!--<PropertyGroup>
     <ProjectsRoot>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), '.git/HEAD'))/Example</ProjectsRoot>
-    <DependencyPropsRoot>$(ProjectsRoot)/Example/Props</DependencyPropsRoot>
+    <DependencyPropsRoot>$(ProjectsRoot)/Props</DependencyPropsRoot>
   </PropertyGroup>-->
 </Project>
   
